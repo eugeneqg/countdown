@@ -32,7 +32,7 @@ const ExistingCountdowns = ({rf, finishDate, setIsMenuOpen, isMenuOpen}) => {
         const finish = item.date;
 
         return (
-            <Countdown rf={rf} keyItem={item.key} key={item.key} name={item.name} finish={finish} setIsMenuOpen={setIsMenuOpen}/>
+            <Countdown rf={rf} keyItem={item.key} key={item.key} name={item.name} date={item.date} finish={finish} setIsMenuOpen={setIsMenuOpen} bgcolor={item.bgcolor}/>
         )
     }) : <p>No countdowns</p>
 

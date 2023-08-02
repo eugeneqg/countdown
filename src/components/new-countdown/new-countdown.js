@@ -6,11 +6,11 @@ const NewCountdown = ({setFinishDate}) => {
 
     const [name, setName] = React.useState("");
     const [date, setDate] = React.useState("");
-    const [active, setActive] = React.useState(false)
+    const [active, setActive] = React.useState(false);
+    const bgColors = ["#FFBDBD", "#D0F0B7","#AFC1FF", "#FFB7D9", "#FFE2B7", "#B7E9FF", "#FFFCB7"];
+    const randomElement = bgColors[Math.floor(Math.random() * bgColors.length)];
     const now = new Date().getTime();
     let today = new Date().toISOString().slice(0,new Date().toISOString().lastIndexOf(":"));
-
-
 
     const changeName = (e) => {
         setName(e.target.value);
@@ -25,10 +25,9 @@ const NewCountdown = ({setFinishDate}) => {
 
     const handler = () => {
         const key = new Date().getTime()
-        localStorage.setItem(key, JSON.stringify({name: name, date: date, key: key}));
+        localStorage.setItem(key, JSON.stringify({name: name, date: date, key: key, bgcolor: randomElement}));
         window.dispatchEvent(new Event("storage"));
         setName("");
-
     }
 
     React.useEffect(() => {

@@ -4,10 +4,12 @@ import { ThreeDots } from "react-bootstrap-icons";
 import "./countdown.sass";
 import Menu from "../menu/menu";
 
-const Countdown = ({rf, keyItem, name, finish}) => {
+const Countdown = ({rf, keyItem, name, date, finish, bgcolor, isDark}) => {
     const [now, setNow] = React.useState(new Date().getTime());
     const [timeLeft, setTimeLeft] = React.useState(finish - now);
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+    const [bgColor, setBgColor] = React.useState(bgcolor ? bgcolor : "#F7F7F7");
+
 
     const [seconds, setSeconds] = React.useState(0);
     const [minutes, setMinutes] = React.useState(0);
@@ -46,12 +48,15 @@ const Countdown = ({rf, keyItem, name, finish}) => {
         window.dispatchEvent(new Event("storage"));
     }
 
-
-
+    const setColor = (color) => {
+        setBgColor(color)
+        localStorage.setItem(keyItem, JSON.stringify({name: name, date: date, key: keyItem, bgcolor: color}));
+        window.dispatchEvent(new Event("storage"));
+    }
 
     return (
-        <div className="countdown">
-            {isMenuOpen ? <Menu rf={rf} setIsMenuOpen={setIsMenuOpen} deleteItem={deleteItem}/> : null}
+        <div className="countdown" style={{"backgroundColor": `${bgColor}`}}>
+            {isMenuOpen ? <Menu rf={rf} setIsMenuOpen={setIsMenuOpen} deleteItem={deleteItem} setColor={setColor}/> : null}
             <div className="countdown__name">
                 <ThreeDots onClick={openModal}/>
                 <h3>{name}</h3>
