@@ -7,30 +7,7 @@ import { Container } from 'react-bootstrap';
 
 function App() {
 
-  const [data, setData] = React.useState([]);
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false)
-
   const [finishDate, setFinishDate] = React.useState("");
-
-  React.useEffect(() => {
-
-    const handleStorage = () => {
-
-      const keys = Object.keys(localStorage);
-
-      const parsed = keys.map(key => {
-        return JSON.parse(localStorage.getItem(key))
-      });
-
-      setData(parsed); 
-  }
-
-  handleStorage();
-
-  window.addEventListener("storage", handleStorage);
-  return () => window.removeEventListener("storage", handleStorage);
-    
-  }, []);
 
 
   return (

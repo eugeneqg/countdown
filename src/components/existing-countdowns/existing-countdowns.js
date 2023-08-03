@@ -2,17 +2,15 @@ import Countdown from "../timer/countdown";
 import React from "react";
 import "./exisiting-countdowns.sass";
 
-const ExistingCountdowns = ({rf, finishDate, setIsMenuOpen, isMenuOpen}) => {
+const ExistingCountdowns = ({finishDate, setIsMenuOpen, isMenuOpen}) => {
 
     const [data, setData] = React.useState([]);
-    const [keys, setKeys] = React.useState([]);
 
     React.useEffect(() => {
 
         const handleStorage = () => {
 
             const keys = Object.keys(localStorage);
-            setKeys(keys);
 
             const parsed = keys.map(key => {
               return JSON.parse(localStorage.getItem(key))
@@ -32,7 +30,7 @@ const ExistingCountdowns = ({rf, finishDate, setIsMenuOpen, isMenuOpen}) => {
         const finish = item.date;
 
         return (
-            <Countdown rf={rf} keyItem={item.key} key={item.key} name={item.name} date={item.date} finish={finish} setIsMenuOpen={setIsMenuOpen} bgcolor={item.bgcolor}/>
+            <Countdown keyItem={item.key} key={item.key} name={item.name} date={item.date} finish={finish} setIsMenuOpen={setIsMenuOpen} bgcolor={item.bgcolor}/>
         )
     }) : <p>No countdowns</p>
 

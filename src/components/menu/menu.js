@@ -1,5 +1,6 @@
 import "./menu.sass"
 import React from "react";
+import { Trash } from "react-bootstrap-icons";
 
 const Menu = ({setIsMenuOpen, deleteItem, setColor}) => {
 
@@ -14,8 +15,9 @@ const Menu = ({setIsMenuOpen, deleteItem, setColor}) => {
 
     return (
             <div onClick={closeMenu} ref={ref} className="menu">
-                <div>
-                    <h2 onClick={deleteItem}>Delete</h2>
+                <div onClick={deleteItem} className="d-flex gap-2 align-items-center">
+                    <Trash/>
+                    <h2>Delete</h2>
                 </div>
                 <div className="colors">
                     <div onClick={() => setColor("#FFBDBD")} style={{"backgroundColor": "#FFBDBD"}} className="colors__item"></div>
